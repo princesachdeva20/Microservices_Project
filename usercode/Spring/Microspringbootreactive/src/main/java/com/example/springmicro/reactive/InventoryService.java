@@ -42,6 +42,19 @@ class InventoryService {
                 .flatMap(cart -> cart.getCartItems().stream()
                         .filter(cartItem -> cartItem.getItem().getId().equals(itemId))
                         .findAny()
+                        .map(cartItem -> {cartItem.increment(); return Mono.just(cart);})
+                        .orElse(Mono.empty()))
+                .map(cart -> new Cart(cart.getId(),cart.getCartItems().stream()
+                        .filter(cartItem -> cartItem.getQuantity()>0)
+                        .collect(Collectors.toList())))
+                .flatMap(cart -> this.cartRepo.save(cart));
+    }
+    public Mono<Cart> removeOneFromCart(String cartId, String itemId){
+        return this.cartRepo.findById(cartId)
+                .defaultIfEmpty(new Cart(cartId))
+                .flatMap(cart -> cart.getCartItems().stream()
+                        .filter(cartItem -> cartItem.getItem().getId().equals(itemId))
+                        .findAny()
                         .map(cartItem -> {cartItem.decrement(); return Mono.just(cart);})
                         .orElse(Mono.empty()))
                 .map(cart -> new Cart(cart.getId(),cart.getCartItems().stream()
@@ -49,4 +62,20 @@ class InventoryService {
                         .collect(Collectors.toList())))
                 .flatMap(cart -> this.cartRepo.save(cart));
     }
+    /*
+    public Mono<Cart> removeOneFromCart(String cartId, String itemId) {
+    return this.cartRepo.findById(cartId)
+            .flatMap(cart -> {
+                boolean removed = cart.getCartItems().removeIf(cartItem -> cartItem.getItem().getId().equals(itemId));
+                if (removed) {
+                    return this.cartRepo.save(cart);
+                } else {
+                    return Mono.just(cart);
+                }
+            })
+            .map(cart -> new Cart(cart.getId(), cart.getCartItems().stream()
+                    .filter(cartItem -> cartItem.getQuantity() > 0)
+                    .collect(Collectors.toList())));
+        }
+     */ //Remove one item if the cart is present
 }
