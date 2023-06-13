@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot - Getting Started</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<style>
+    h2 {text-align: center;}
+    h1 {text-align: center;}
+    button {text-align: center;}
+    div {text-align: center; }
+    table.center 
+    {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+
+<body style=background-color:white; >
+<button onclick="myFunction()">Show/Hide User Information</button>
+
+<div id="myDIV" style="display:none;">
+<div sec:authorize="isAuthenticated()">
+  <!-- Write your code here -->
+    
+
+</div>
+</div>
+
+<div style="border: 1px solid; border-color: black">
+<h1>Spring Boot Micro Service!</h1>
+
+
+<h2>Inventory Management</h2>
+<table class="center">
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td>
+            <form method="post" th:action="@{'/add/' + ${item.id}}">
+                <input type="submit" value="Add to Cart" />
+            </form>
+        </td>
+    </tr>
+</table>
+
+<h2>My Cart</h2>
+<table class="center">
+    <th>Id</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <tr th:each="cartItem : ${cart.cartItems}">
+        <td th:text="${cartItem.item.id}"></td>
+        <td th:text="${cartItem.item.name}"></td>
+        <td th:text="${cartItem.quantity}"></td>
+        <td>
+            <form th:method="delete" th:action="@{'/remove/' + ${cartItem.item.id}}">
+                <input type="submit" value="-1"/>
+            </form>
+        </td>
+    </tr>
+</table>
+<br>
+
+</br>
+</div>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
