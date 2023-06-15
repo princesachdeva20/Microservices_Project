@@ -29,5 +29,17 @@ public Mono<Cart> addItemtoCart(String cartId, String itemId) {
   .flatMap(cart -> this.cartRepo.save(cart)); //Finally, it saves the modified or new cart to the repository and 
                                                 returns the resulting Mono that represents the updated cart.
   
-In Similar way, we can delete an Item present in the cart with a perticular cart ID and item ID
+In Similar way, we can delete an Item present in the cart with a particular cart ID and item ID
+
+How to create client ID and client secret
+
+
+
+To create an OAuth client ID, follow the steps below:
+
+Go to the “Credentials panel” and select “Credentials” from the sidebar.
+Click the “CREATE CREDENTIALS” button.
+Select the “OAuth client ID” option from the menu.
+You’ll be asked to select the “Application type” and set the “Name” of your OAuth 2.0 client. 
+Choose “Desktop app,” set an appropriate name for the client, and click the “CREATE” button.
 
