@@ -3,9 +3,9 @@ spring:
     oauth2:
       client:
         registration:
-          google:
-            client-id:
-            client-secret:
+          aws:
+            client-id: jsc6qbniq3ht5ivqnmjeu9ipi
+            client-secret: to1nc7ja5ce0pihnfm03lv3rv1su8k1j7o9poa2ssq25elt5ib1
   webflux:
     hiddenmethod:
       filter:
