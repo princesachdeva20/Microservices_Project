@@ -36,7 +36,7 @@ class InventoryService {
         return this.itemRepo.deleteById(itemId);
     }
 
-    public Mono<Cart> addItemtoCart(String cartId, String itemId){
+    public Mono<Cart> addItemToCart(String cartId, String itemId){
         return this.cartRepo.findById(cartId)
                 .defaultIfEmpty(new Cart(cartId))
                 .flatMap(cart -> cart.getCartItems().stream()
