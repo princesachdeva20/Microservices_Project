@@ -26,53 +26,53 @@
 <button onclick="myFunction()">Show/Hide User Information</button>
 
 <div id="myDIV" style="display:none;">
-<div sec:authorize="isAuthenticated()">
-  <!-- Write your code here -->
-    
+    <div sec:authorize="isAuthenticated()">
+        <!-- Write your code here -->
 
-</div>
+
+    </div>
 </div>
 
 <div style="border: 1px solid; border-color: black">
-<h1>Spring Boot Micro Service!</h1>
+    <h1>Spring Boot Micro Service!</h1>
 
 
-<h2>Inventory Management</h2>
-<table class="center">
-    <th>Id</th>
-    <th>Name</th>
-    <th>Price</th>
-    <tr th:each="item : ${items}">
-        <td th:text="${item.id}"></td>
-        <td th:text="${item.name}"></td>
-        <td th:text="${item.price}"></td>
-        <td>
-            <form method="post" th:action="@{'/add/' + ${item.id}}">
-                <input type="submit" value="Add to Cart" />
-            </form>
-        </td>
-    </tr>
-</table>
+    <h2>Inventory Management</h2>
+    <table class="center">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+                <form method="post" th:action="@{'/add/' + ${item.id}}">
+                    <input type="submit" value="Add to Cart" />
+                </form>
+            </td>
+        </tr>
+    </table>
 
-<h2>My Cart</h2>
-<table class="center">
-    <th>Id</th>
-    <th>Name</th>
-    <th>Quantity</th>
-    <tr th:each="cartItem : ${cart.cartItems}">
-        <td th:text="${cartItem.item.id}"></td>
-        <td th:text="${cartItem.item.name}"></td>
-        <td th:text="${cartItem.quantity}"></td>
-        <td>
-            <form th:method="delete" th:action="@{'/remove/' + ${cartItem.item.id}}">
-                <input type="submit" value="-1"/>
-            </form>
-        </td>
-    </tr>
-</table>
-<br>
+    <h2>My Cart</h2>
+    <table class="center">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <tr th:each="cartItem : ${cart.cartItems}">
+            <td th:text="${cartItem.item.id}"></td>
+            <td th:text="${cartItem.item.name}"></td>
+            <td th:text="${cartItem.quantity}"></td>
+            <td>
+                <form th:method="delete" th:action="@{'/remove/' + ${cartItem.item.id}}">
+                    <input type="submit" value="-1"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <br>
 
-</br>
+    </br>
 </div>
 
 <script>
