@@ -28,7 +28,10 @@
 <div id="myDIV" style="display:none;">
     <div sec:authorize="isAuthenticated()">
         <!-- Write your code here -->
-
+        keytool -genkeypair -noprompt -dname "CN=mqttserver.ibm.com,
+        OU=ID, O=IBM, L=Hursley, S=Hants, C=GB" -storepass password -keypass password
+        -alias secure -keyalg RSA -keysize 2048 -storetype PKCS12
+        -keystore secure.p12 -validity 3650 && cp secure.p12 ./src/main/resources
 
     </div>
 </div>

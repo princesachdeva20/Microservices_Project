@@ -8,5 +8,6 @@ com/example/springmicro/reactive/MicroSpringApplication.class
 com/example/springmicro/reactive/InventoryService.class
 com/example/springmicro/reactive/HomeController.class
 com/example/springmicro/reactive/User.class
+com/example/springmicro/reactive/ItemController.class
 com/example/springmicro/reactive/ItemRepository.class
 com/example/springmicro/reactive/CartRepository.class
