@@ -7,44 +7,91 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <style>
-    h2 {text-align: center;}
-    h1 {text-align: center;}
-    button {text-align: center;}
-    div {text-align: center; }
-    table.center 
-    {
-        margin-left: auto;
-        margin-right: auto;
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
     }
-    table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-</style>
 
-<body style=background-color:white; >
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    div.container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    form {
+      display: inline-block;
+    }
+
+    input[type="submit"] {
+      padding: 8px 12px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+
+<body>
 <button onclick="myFunction()">Show/Hide User Information</button>
 
-<div id="myDIV" style="display:none;">
+<div id="myDIV" style="display: none;">
     <div sec:authorize="isAuthenticated()">
         <!-- Write your code here -->
-        keytool -genkeypair -noprompt -dname "CN=mqttserver.ibm.com,
-        OU=ID, O=IBM, L=Hursley, S=Hants, C=GB" -storepass password -keypass password
-        -alias secure -keyalg RSA -keysize 2048 -storetype PKCS12
-        -keystore secure.p12 -validity 3650 && cp secure.p12 ./src/main/resources
 
     </div>
 </div>
 
-<div style="border: 1px solid; border-color: black">
+<div class="container">
     <h1>Spring Boot Micro Service!</h1>
-
-
     <h2>Inventory Management</h2>
-    <table class="center">
-        <th>Id</th>
-        <th>Name</th>
-        <th>Price</th>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
         <tr th:each="item : ${items}">
             <td th:text="${item.id}"></td>
             <td th:text="${item.name}"></td>
@@ -58,10 +105,13 @@
     </table>
 
     <h2>My Cart</h2>
-    <table class="center">
-        <th>Id</th>
-        <th>Name</th>
-        <th>Quantity</th>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
         <tr th:each="cartItem : ${cart.cartItems}">
             <td th:text="${cartItem.item.id}"></td>
             <td th:text="${cartItem.item.name}"></td>
@@ -73,9 +123,6 @@
             </td>
         </tr>
     </table>
-    <br>
-
-    </br>
 </div>
 
 <script>

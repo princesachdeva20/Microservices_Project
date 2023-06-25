@@ -2,10 +2,18 @@ spring:
   security:
     oauth2:
       client:
+
         registration:
-          google:
-            client-id:
-            client-secret:
+          cognito:
+            clientId: jsc6qbniq3ht5ivqnmjeu9ipi
+            clientSecret: to1nc7ja5ce0pihnfm03lv3rv1su8k1j7o9poa2ssq25elt5ib1
+            scope: openid
+            redirect-uri: http://localhost:8080/login/oauth2/code/cognito
+            clientName: clientName
+        provider:
+          cognito:
+              issuerUri: https://cognito-idp.us-west-2.amazonaws.com/us-west-2_hHScB9zNG
+              user-name-attribute: cognito:username
   webflux:
     hiddenmethod:
       filter:
