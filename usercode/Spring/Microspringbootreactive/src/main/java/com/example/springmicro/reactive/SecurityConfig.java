@@ -26,7 +26,7 @@ public class SecurityConfig {
 	CommandLineRunner userLoader(MongoOperations operations) {
 		return args -> {
 			operations.save(new com.example.springmicro.reactive.User( 
-					"educative", "password", Arrays.asList("ROLE_USER")));
+					"educative", "Yash&Thowsin01", Arrays.asList("ROLE_USER")));
 		};
 	}
 }
