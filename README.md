@@ -43,3 +43,4 @@ Select the “OAuth client ID” option from the menu.
 You’ll be asked to select the “Application type” and set the “Name” of your OAuth 2.0 client. 
 Choose “Desktop app,” set an appropriate name for the client, and click the “CREATE” button.
 
+Added Item Controller Java file to update the database of Items in mongo DB, through a web page "addItemToDB.html" file. This is the addition to the project and complete the project.
