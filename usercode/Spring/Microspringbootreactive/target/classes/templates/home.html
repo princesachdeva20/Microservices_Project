@@ -123,6 +123,23 @@
             </td>
         </tr>
     </table>
+
+    <table>
+        <tr>
+            <th>Discount</th>
+            <th>Tax Amount</th>
+            <th>Total</th>
+
+        </tr>
+        <tr>
+            <td th:text=>5%</td>
+            <td th:text=>10.2%</td>
+            <td th:text="${TotalAmount.totalAmountDue();}"></td>
+            <td>
+
+            </td>
+        </tr>
+    </table>
 </div>
 
 <script>

@@ -2,7 +2,6 @@ spring:
   security:
     oauth2:
       client:
-
         registration:
           cognito:
             clientId: jsc6qbniq3ht5ivqnmjeu9ipi
